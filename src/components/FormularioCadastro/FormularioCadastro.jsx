@@ -1,19 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@mui/material";
 
 function FormularioCadastro() {
-  let nome = ''
+  const [nome, setNome] = useState("")
+
   return (
     <form onSubmit={(event) => {
       event.preventDefault()
       console.log(nome)
     }}>
       <TextField 
-        
+        value={nome}
         onChange={(event) => {
-          nome = event.target.value
+          setNome(event.target.value)
+
+          if(nome.length > 3) {
+            setNome(nome.substring(0, 3))
+          }
         }}
-        
+
         id="nome" 
         label="Nome" 
         variant="outlined" 
